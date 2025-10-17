@@ -14,7 +14,7 @@ function setup() {
 }
 
 function draw() {
-    background(220);
+    background(0);
 
     creatureX = lerp(creatureX, mouseX, 0.02);
     creatureY = lerp(creatureY, mouseY, 0.02);
