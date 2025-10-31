@@ -37,6 +37,7 @@ class violaDancer {
     this.x = startX;
     this.y = startY;
     this.rotate = 0;
+    this.offset = 0;
 
     // add properties for your dancer here:
     //..
@@ -48,10 +49,12 @@ class violaDancer {
     this.y += cos(frameCount * 0.02)
 
     this.rotate = lerp(this.rotate, 0, 0.1)
+    this.offset = lerp(this.offset, 0, 0.05)
 
     if (frameCount % 200 == 0) {
       console.log("frame!")
       this.rotate += 3 * PI
+      this.offset = -200
     }
   }
 
@@ -59,9 +62,10 @@ class violaDancer {
 
     push();
     translate(this.x, this.y);
+    push()
+    translate(0, this.offset)
     rotate(this.rotate)
-    // ******** //
-    // ⬇️ draw your dancer from here ⬇️
+    // pumpkin body
     fill(255, 120, 10)
     ellipse(0, 0, 200, 140)
     fill(0)
@@ -86,6 +90,18 @@ class violaDancer {
     vertex(-6, -80)
     endShape(CLOSE)
     pop()
+    pop()
+
+    // leg
+    for (let i = 0; i < 4; i++) {
+      push(0, 150)
+      translate(-70 + i * 50, 80)
+      rotate(frameCount * 0.1)
+      fill(120, 120, 80)
+      ellipse(0, 0, 50, 60)
+      pop()
+    }
+
 
 
     // ⬆️ draw your dancer above ⬆️
