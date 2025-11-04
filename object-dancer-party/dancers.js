@@ -459,6 +459,7 @@ class AustinDancer {
         push();
 
         translate(this.x, this.y);
+        scale(1.2)
         noStroke()
 
         rotate(this.rotate)
@@ -504,6 +505,7 @@ class AustinDancer {
 
         translate(this.x, this.y);
         noStroke()
+        scale(1.2)
 
         rotate(-this.rotate)
 

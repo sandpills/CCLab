@@ -17,12 +17,12 @@ let floorY;
 let nextDancerIndex = 0;
 let smoke = [];
 let strobe = false;
-let strobePeriod = 4;
+let strobePeriod = 6;
 
 let gif;
 
 function preload() {
-    gif = loadImage("discoball.gif");
+    gif = loadImage("discoball-big.gif");
 }
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -35,8 +35,8 @@ function draw() {
     background(0);
 
     drawFloor();
-    drawDancers();
     drawDiscoBall();
+    drawDancers();
     drawLights();
     drawSmoke();
 
@@ -150,10 +150,10 @@ function drawSmoke() {
     pop();
 }
 function drawDiscoBall() {
-    push();
+    push()
     imageMode(CENTER);
-    translate(width / 2, 80);
-    scale(1);
+    translate(width / 2, 100);
+    scale(0.8);
     image(gif, 0, 0);
     pop();
 }
