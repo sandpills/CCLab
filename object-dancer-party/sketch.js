@@ -7,7 +7,7 @@ console.log("[l]: switches on strobe light")
 
 
 // Add the name of all dancer classes in here:
-let dancerClasses = [RyanDancer, HuySkibidiDancer, AnnaDancer, AngelinaDancer, ChristinaDancer, AustinDancer
+let dancerClasses = [RyanDancer, HuySkibidiDancer, AnnaDancer, AngelinaDancer, ChristinaDancer, AustinDancer, sydneyDancer, TowakoDancer
 ];
 
 
