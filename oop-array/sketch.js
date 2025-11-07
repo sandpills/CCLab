@@ -1,6 +1,7 @@
 let clouds = []
 
 function setup() {
+
   let canvas = createCanvas(800, 500);
   canvas.parent("p5-canvas-container");
 
@@ -8,16 +9,22 @@ function setup() {
     clouds[i] = new Cloud(random(width), random(height), random(60, 120))
   }
   console.log(clouds)
+
 }
 
 function draw() {
+
   background(150, 125, 255);
-  // cloudInstance.display()
 
   for (let i = 0; i < clouds.length; i++) {
     clouds[i].move()
     clouds[i].display()
   }
+
+}
+
+function mousePressed() {
+  clouds.push(new Cloud(mouseX, mouseY, random(40, 100)))
 }
 
 
@@ -28,6 +35,8 @@ class Cloud {
     this.s = cloudS
     this.speedX = random(-2, 2)
     this.speedY = random(-3, 3)
+
+    this.spin = 0.0
   }
   move() {
     // this.x += random(-2, 2)
@@ -37,16 +46,18 @@ class Cloud {
 
     if (this.x > width || this.x < 0) {
       this.speedX = -this.speedX
+      this.spin += 0.01
     }
 
     if (this.y > height || this.y < 0) {
       this.speedY = -this.speedY
     }
   }
+
   display() {
     push()
     translate(this.x, this.y)
-    rotate(frameCount * 0.05)
+    rotate(frameCount * this.spin)
     noStroke()
     fill(200, 220, 150)
     circle(0, 0, this.s)
