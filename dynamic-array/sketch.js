@@ -27,7 +27,7 @@ function draw() {
   }
 
   // take out old fireworks
-  if (fireworks.length > 50) {
+  if (fireworks.length > 100) {
     fireworks.splice(0, 3)
   }
 
