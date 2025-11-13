@@ -17,9 +17,12 @@ function mousePressed() {
   if (!interacted) {
     song.play() // <------
     interacted = true;
-  } else {
-    balls.push(new Ball(mouseX, mouseY))
   }
+  // deleted
+}
+
+function keyPressed() {
+  balls.push(new Ball(mouseX, mouseY))
 }
 
 function draw() {
@@ -31,6 +34,14 @@ function draw() {
       balls[i].update();
       balls[i].display();
     }
+
+    for (let i = balls.length - 1; i >= 0; i--) {
+      let b = balls[i]
+      if (b.isDone) {
+        balls.splice(i, 1)
+      }
+    }
+
     text("number of balls: " + balls.length, width / 2, 30)
   } else {
     textAlign(CENTER);
@@ -48,11 +59,14 @@ class Ball {
     this.size = random(20, 50);
 
     this.myRate = map(this.size, 20, 50, 1, 0.2)
+    this.col = color(0, 0, 0)
+    this.isDone = false;
   }
   update() {
     this.x += this.xSpeed;
     this.y += this.ySpeed;
     this.checkEdges();
+    this.checkMouse();
   }
   checkEdges() {
     if (this.x > width || this.x < 0) {
@@ -67,10 +81,24 @@ class Ball {
       beep.play()
     }
   }
+  checkMouse() {
+    let d = dist(mouseX, mouseY, this.x, this.y)
+    if (d < this.size / 2) {
+      // mouse is in
+      if (mouseIsPressed) {
+        this.isDone = true;
+      }
+      this.col = color(255, 255, 0)
+    } else {
+      // mouse is out
+      this.col = color(0, 0, 0)
+    }
+  }
+
   display() {
     push();
     translate(this.x, this.y);
-    fill(0);
+    fill(this.col);
     noStroke();
     circle(0, 0, this.size)
     pop();
